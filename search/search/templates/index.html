@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="static/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+        <title>ask485?</title>  
+    </head>
+    <body>
+        <div class="feed">
+            <!-- DO NOT CHANGE THIS (aside from where we say 'FIXME') -->
+            <div class="ask485">
+                ask485?
+            </div>
+            <form action="/" method="GET">
+                <div class="search_bear"><input type="text" name="q"/></div>
+                <div class="pagerank_weight">Pagerank Weight</div>
+                <input type="range" name="w" min="0" max="1" value="0.5" step="0.01"/>
+                <input type="submit" value="Search"/>
+            </form>
+            <div class="docs">
+                {% if no_results is eq(1) %}
+                <div class="no_results">No results.</div>
+                {% endif %}
+                {% for doc in results %}
+                <a class="doc_url">
+                    {% if doc['url'] %}
+                        {{ doc['url'] }}
+                    {% else %}
+                        No url available
+                    {% endif %}
+                </a>
+                <div class="doc_title">
+                    {{ doc['title'] }}
+                </div>
+                <div class="doc_summary">
+                    {% if doc['summary'] %}
+                        {{ doc['summary'] }}
+                    {% else %}
+                        No summary available
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

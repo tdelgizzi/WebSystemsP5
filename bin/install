@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+set -x
+
+python3 -m venv env
+
+source env/bin/activate
+
+pip install -r index/requirements.txt
+pip install -e index
+pip install -r search/requirements.txt
+pip install -e search
+
+mkdir -p tmp
+export TMPDIR=tmp
+
+pushd $VIRTUAL_ENV/bin
+ln -sf ../../tests/utils/hadoop.py hadoop
+popd
